@@ -1,0 +1,40 @@
+{
+  "name": "polyhedron-odm",
+  "version": "0.0.0",
+  "description": "ODM for Angularjs & PouchDB",
+  "main": "polyhedron.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jshint -c .jshintrc *.js test/*.js && ./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js",
+    "build": "mkdir -p dist && browserify polyhedron.js -o dist/polyhedron.js -s Polyhedron",
+    "install": "napa"
+  },
+  "napa": {
+    "angular": "angular/bower-angular",
+    "angular-route": "angular/bower-angular-route",
+    "pouchdb-gql":"pouchdb/GQL"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marfarma/Polyhedron.js"
+  },
+  "keywords": [
+    "PouchDB",
+    "CouchDB",
+    "Angularjs",
+    "Object Document Mapper"
+  ],
+  "author": "Pauli Price",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marfarma/Polyhedron.js/issues"
+  },
+  "devDependencies": {
+    "napa": "~0.3.0",
+    "beefy": "~0.7.1",
+    "chai": "~1.8.1",
+    "mocha": "~1.16.2",
+    "jshint": "~2.3.0",
+    "pouchdb": "~1.0.0",
+    "istanbul": "~0.2.3"
+  }
+}
