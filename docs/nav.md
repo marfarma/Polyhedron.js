@@ -5,6 +5,6 @@
         {"title": "Validations", "link": "validations"},
         {"title": "Query Language", "link": "gql"},
         {"title": "Examples", "link": "examples"},
-        {"title": "Annotated Code", "link": "annotated"}
+        {"title": "Developer", "link": "developer"}
     ]
 </div>
