@@ -1,0 +1,86 @@
+# Persistance & Query API
+
+The library exposes a simple persistence API.
+
+<table> 
+<thead> 
+<tr> 
+    <th>Operation</th> 
+    <th>Description</th> 
+    <th>Example</th> 
+</tr> 
+</thead> 
+<tbody> 
+    <tr>
+        <td><div>Register Object Prototype with Library</div></td> 
+        <td></td> 
+        <td><pre><code>db.setType(type, fn)</code></pre></td>
+    </tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.new</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.bulk_new</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.save</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.bulk_save</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.destroy</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.bulk_destroy</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.exists?</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.find</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.find_by</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.find_or_save_by</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.first</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.first_or_save</code></pre></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td> 
+    <td><pre><code>db.last</code></pre></td>
+</tr>
+</tbody> 
+</table>
+

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title>{{NAME}} :: viewdocs.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link href="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/css/bootflat.css" rel="stylesheet" media="screen">
+    <link href="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/css/bootflat-extensions.css" rel="stylesheet" media="screen">
+    <link href="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/css/bootflat-square.css" rel="stylesheet" media="screen">
+    <link href="http://{{USER}}.github.io/{{NAME}}/docs/assets/css/docs.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/js/html5shiv.js"></script>
+      <script src="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div ng-controller="NavbarCtrl">
+        <navbar heading="Angular Pouch Model" name={{NAME}} user={{USER}} />
+    </div>
+    <div class="bf-header" id="content">
+	  	<div class="container" page-heading >
+	  	</div>
+    </div>
+    
+    <div class="container"> 
+        <!-- Docs nav
+         ================================================== -->
+        <div class="row main-row" ng-controller="SidebarnavCtrl">
+
+            <ul class="col-md-3 sidebar nav nav-list nav-list-panel nav-list-panel-square">
+                <li ng-repeat="item in items">
+                    <a scroll-to="{{item.id}}">{{item.text}}</a>
+                </li>
+            </ul>
+
+            <!-- body block -->
+            <div class="col-md-9 main-content" add-classes>
+                <!-- Main section
+                ================================================== -->
+                <section id="global" class="containerblock">
+                  <div sidebar-nav class="section">
+                      {{CONTENT}}
+                  </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <hr>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="col-md-8">
+          <a href="#">License</a>    
+        </div>
+        <div class="col-md-4">
+          <p class="muted pull-right">© 2014 Pauli Price</p>
+        </div>
+      </div>
+    </div>
+    <!-- ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/js/jquery-1.10.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://{{USER}}.github.io/{{NAME}}/docs/assets/bootflat/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.7.0/ui-bootstrap-tpls.js"></script>
+    <script src="http://{{USER}}.github.io/{{NAME}}/docs/assets/js/app.js"></script>
+    
+    <script type="text/ng-template" id="navbar.html">
+        <div xmlns="http://www.w3.org/1999/html">
+        
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex5-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/{{NAME}}">{{heading}}</a>
+                </div>
+                             
+                <div class="collapse navbar-collapse navbar-ex5-collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li ng-repeat="item in items" ng-class="{active: item.selected}">
+                            <a href="/{{NAME}}/{{item.link}}">{{item.title}}</a>
+                        </li>
+                    </ul>
+                                            
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-class="{active: item.selected}">
+                            <a href="http://github.com/{{USER}}/{{NAME}}">On Github</a>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+      </div>
+      
+  </script>
+</body>
+</html>
