@@ -1,4 +1,4 @@
-# Angular Pouch Model
+# Polyhedron.js
 
 A promised based, $digest aware, object persistence layer for Angularjs applications using PouchDB in the browser.
 

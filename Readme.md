@@ -2,4 +2,4 @@
 
 promised based, $digest aware, object persistence layer for angularjs apps using PouchDB
 
-## http://marfarma.viewdocs.io/polyhedron.js
+## http://marfarma.viewdocs.io/Polyhedron.js
