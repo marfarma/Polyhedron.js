@@ -2,15 +2,20 @@ body {
   position: relative; /* For scrollyspy */
   padding-top: 50px; /* Account for fixed navbar */
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  background-image:url('http://marfarma.github.io/angular-pouch-model/docs/assets/images/Polyhedron.png');
+  background-color:#ffffff;
   /*font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif; */
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;  
 }
+.container {
+  background-color:#ffffff;
+}
 
 /* Page headers */
 .bf-header {
-  padding: 30px 30px 40px;
+  padding: 30px 30px 0px;
   font-size: 16px;
   color: #5a5a5a;
   text-align: center;
@@ -19,11 +24,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .bf-header p {
   font-weight: 300;
   line-height: 1.5;
+  margin-bottom: 40px;
 }
 .bf-header .container {
   position: relative;
 }
-
+.page-heading {
+    background-image:url('http://marfarma.github.io/angular-pouch-model/docs/assets/images/leonardo_polyhedra_clipped_rev_3_light.png');
+    background-repeat: no-repeat;
+}
 .bf-docs-section + .bf-docs-section {
   padding-top: 20px;
 }
@@ -56,7 +65,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 @media screen and (min-width: 992px) {
   .bf-header h1,
   .bf-header p {
-    margin-right: 380px;
+    margin-left: 200px;
+    margin-right: 200px;
   }
 }
 
