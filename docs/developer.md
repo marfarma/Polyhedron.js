@@ -1,13 +1,13 @@
-# Contributing to Polyhedron.js
+# Hacking on Polyhedron.js
 
-Want to help make Polyhedron.js even more awesome?  Great!  Here's what you need to know.
+Want to help make Polyhedron.js even more awesome?  Great!
 
-## Development environment
+## Development Environment
 
-- Node
-- NPM
-- Browserify
-- Napa
+ - Node
+ - NPM
+ - Browserify
+ - Napa
 
 ## Documentation
 
@@ -21,9 +21,9 @@ It's easiest to use a post-commit hook and ...
 
 ## Code Conventions
 
-- .editorconfig  
-- git.core.crlf
-- jshint
+ - .editorconfig  
+ - git.core.crlf
+ - jshint
 
 ## Creating Pull Requests
 
@@ -33,3 +33,5 @@ Follow the a [simple git branching model](https://gist.github.com/jbenet/ee6c9ac
 Tests are required for all pull requests.  (Documentation and code formatting only changes excepted, of course.)
 
 ## Test
+
+Tests are maintained in Mocha / Chai
