@@ -46,6 +46,7 @@
     "karma-coffee-preprocessor": "~0.1.2",
     "karma-phantomjs-launcher": "~0.1.1",
     "karma": "~0.10.9",
-    "karma-browserify": "0.0.6"
+    "karma-browserify": "0.0.6",
+    "watchify": "~0.5.5"
   }
 }
