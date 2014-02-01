@@ -82,6 +82,14 @@ Assign callbacks to be executed on model create, update or destroy events.  Casc
 
 In modern single-page applications JavaScript objects tend to be retained in the browser indefinitely, compounding the risk of object identity issues creating difficult to diagnose bugs.  With an identity map, all retrieved objects are cached in memory, and all requests return a reference to the cached object, if it exists.  
 
+## Compatibility
+
+Polyhedron.js assumes the existence of Object.create and Object.defineProperty. This means that it will work with the following browsers:
+
+|IE	            |Chrome	        |Firefox	       |Safari |Opera|
+| ------------- |---------------| -----------------|-------|-----|
+|9+	            |5+	            |4+	               |5+	   |12+  |        
+
 ## Versioning
 
 Angular Pouch Model follows [semver-ftw](http://semver-ftw.org/). 
