@@ -30,8 +30,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   position: relative;
 }
 .page-heading {
-    background-image:url('http://marfarma.github.io/angular-pouch-model/docs/assets/images/leonardo_polyhedra_clipped_rev_3_light.png');
-    background-repeat: no-repeat;
+    background:url('http://marfarma.github.io/angular-pouch-model/docs/assets/images/leonardo_polyhedra_clipped_rev_3_light.png') no-repeat left center;
 }
 .bf-docs-section + .bf-docs-section {
   padding-top: 20px;
