@@ -71,12 +71,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 @media screen and (min-width: 992px) {
   .bf-header h1,
   .bf-header p {
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-right: 300px;
   }
   .page-heading {
       min-height: 210px;
+      /*
       background:url('http://marfarma.github.io/Polyhedron.js/docs/assets/images/leonardo_polyhedra_clipped_200x200.png') no-repeat left center;
+      */
       background-color: rgba(255,255,255,0.90);
   }
   
