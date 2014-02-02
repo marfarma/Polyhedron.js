@@ -48,6 +48,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   text-align: center;
 }
 
+.nav-list-panel {
+    background-color: rgba(236,240,241,0.90);
+}
+
+
 /* Tablets and up */
 @media screen and (min-width: 768px) {
 
