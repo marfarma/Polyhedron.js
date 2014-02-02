@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .container {
   /*background-color:#ffffff;*/
-  background-color: rgba(255,255,255,0.95);
+  background-color: rgba(255,255,255,0.90);
 }
 
 /* Page headers */
@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .page-heading {
     /*background: #ffffff;*/
-    background-color: rgba(255,255,255,0.95);
+    background-color: rgba(255,255,255,0.90);
     border-bottom: 1px solid #e5e5e5;
 }
 .bf-docs-section + .bf-docs-section {
@@ -71,7 +71,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
   .page-heading {
       min-height: 210px;
-      background:url('http://marfarma.github.io/Polyhedron.js/docs/assets/images/leonardo_polyhedra_clipped_200x200.png') #ffffff no-repeat left center;
+      background:url('http://marfarma.github.io/Polyhedron.js/docs/assets/images/leonardo_polyhedra_clipped_200x200.png') no-repeat left center;
+      background-color: rgba(255,255,255,0.90);
   }
   
 }
