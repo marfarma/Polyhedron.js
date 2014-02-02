@@ -10,7 +10,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;  
 }
 .container {
-  background-color:#ffffff;
+  /*background-color:#ffffff;*/
+  background-color: rgba(255,255,255,0.95);
 }
 
 /* Page headers */
@@ -29,7 +30,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   position: relative;
 }
 .page-heading {
-    background: #ffffff;
+    /*background: #ffffff;*/
+    background-color: rgba(255,255,255,0.95);
     border-bottom: 1px solid #e5e5e5;
 }
 .bf-docs-section + .bf-docs-section {

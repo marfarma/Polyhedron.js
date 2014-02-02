@@ -1,0 +1,39 @@
+db.gql({select: "*", where: "type='FooModel' and name is not null"}, function(err, result){
+        if(!err){
+        // Use the results of the query here
+        }
+      });
+     
+uniqueIn: on: {property:foreign_property, within:collection}
+unique: on: {property:foreign_property, within:collection}
+exists: (property: property, on: {type:type,property:foreign_property}) 
+notExist: (property: property, on: {type:type,property:foreign_property}) 
+
+if (typeof obj.pouch_model_validations !== 'undefined') {
+    // merge model validations with core validation constraints
+}
+
+add validation for exists in array – combination of has own property and array some. (Associative array would complicate UI implementation.)
+
+function findEmployee(id) {
+  var employee;
+  employees.some(function (e) {
+      if (e.id === id) {
+          employee = e;
+          return true;
+      }
+  });
+  return employee;
+}
+var valid_words = {
+  'foobar': true,
+  'bar': true,
+  'baz': true,
+  'quux': true
+};
+
+function is_valid(word) {
+  return valid_words.hasOwnProperty(word);
+}
+
+is_valid('fox'); // false

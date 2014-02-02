@@ -1,0 +1,98 @@
+
+    // Add method as a non-enumerable property on obj with the name methodName
+    var addMethod = function( global, objectName, prefix, methodName, method) {
+      var objectToExtend = global[objectName];
+      methodName = prefix ? prefix+methodName: methodName;
+      // Check - NodeLists and Elements don't always exist on all JS implementations
+      if ( objectToExtend ) {
+        // Don't add if the method already exists
+        if ( ! objectToExtend.prototype.hasOwnProperty(methodName) ) {
+          Object.defineProperty( objectToExtend.prototype, methodName, {
+            value: method,
+            enumerable: false,
+            writable: true
+          });
+        }
+      }
+    };
+    
+    
+    var newMethods = {
+      'Object':{
+        'getKeys':getKeys,
+        'getSize':getSize,
+        'getPath':getPath,
+        'clone':clone,
+        'forEach':objectForEach,
+        'extend':objectExtend,
+      },
+      'NodeList':{
+        'forEach':Array.prototype.forEach,
+        'reverse':Array.prototype.reverse
+      }
+    };
+    for ( var objectName in newMethods ) {
+      for ( var methodName in newMethods[objectName] ) {
+        addMethod(global, objectName, prefix, methodName, newMethods[objectName][methodName]);
+      }
+    }
+    
+ 
+ 
+ /**
+  * Set or clear the hashkey for an object.
+  * @param obj object
+  * @param h the hashkey (!truthy to delete the hashkey)
+  */
+ function setHashKey(obj, h) {
+   if (h) {
+     obj.$$hashKey = h;
+   }
+   else {
+     delete obj.$$hashKey;
+   }
+ }
+ 
+    
+    /**
+     * @ngdoc function
+     * @name angular.extend
+     * @function
+     *
+     * @description
+     * Extends the destination object `dst` by copying all of the properties from the `src` object(s)
+     * to `dst`. You can specify multiple `src` objects.
+     *
+     * @param {Object} dst Destination object.
+     * @param {...Object} src Source object(s).
+     * @returns {Object} Reference to `dst`.
+     */
+    function extend(dst) {
+      var h = dst.$$hashKey;
+      forEach(arguments, function(obj){
+        if (obj !== dst) {
+          forEach(obj, function(value, key){
+            dst[key] = value;
+          });
+        }
+      });
+
+      setHashKey(dst,h);
+      return dst;
+    }
+   
+   function inherit(parent, extra) {
+     return extend(new (extend(function() {}, {prototype:parent}))(), extra);
+   }
+   
+   /**
+    * @param str 'key1,key2,...'
+    * @returns {object} in the form of {key1:true, key2:true, ...}
+    */
+   function makeMap(str){
+     var obj = {}, items = str.split(","), i;
+     for ( i = 0; i < items.length; i++ )
+       obj[ items[i] ] = true;
+     return obj;
+   } 
+    
