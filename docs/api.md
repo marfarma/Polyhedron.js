@@ -44,7 +44,11 @@ The library exposes a simple persistence API.
             </td>
         </tr>
         <tr>
-            <td>Create new unsaved object</td>
+            <td>
+                <div>
+                    Create new unsaved object
+                </div>
+            </td>
             <td></td>
             <td>
                 <pre>
@@ -53,7 +57,11 @@ The library exposes a simple persistence API.
             </td>
         </tr>
         <tr>
-            <td>Create new saved object.</td>
+            <td>
+                <div>
+                    Create new saved object.
+                </div>
+            </td>
             <td></td>
             <td>
                 <pre>
@@ -62,7 +70,11 @@ The library exposes a simple persistence API.
             </td>
         </tr>
         <tr>
-            <td>Update or Save object to data store</td>
+            <td>
+                <div>
+                    Update or Save object to data store
+                </div>
+            </td>
             <td></td>
             <td>
                 <pre>
@@ -71,7 +83,7 @@ The library exposes a simple persistence API.
             </td>
         </tr>
         <tr>
-            <td>Delete given object from the data store.</td>
+            <td><div>Delete given object from the data store.</div></td>
             <td></td>
             <td>
                 <pre>
@@ -80,7 +92,7 @@ The library exposes a simple persistence API.
             </td>
         </tr>
         <tr>
-            <td>Delete objects matching criteria</td>
+            <td><div>Delete objects matching criteria</div></td>
             <td></td>
             <td>
                 <pre>
@@ -89,7 +101,7 @@ The library exposes a simple persistence API.
             </td>
         </tr>
         <tr>
-            <td>Delete matching objects from the data store.</td>
+            <td><div>Delete matching objects from the data store.</div></td>
             <td></td>
             <td>
                 <pre>
@@ -98,7 +110,7 @@ The library exposes a simple persistence API.
             </td>
         </tr>
         <tr>
-            <td></td>
+            <td>Delete</td>
             <td>Delete given object from the data store.</td>
             <td>
                 <pre>
@@ -107,8 +119,8 @@ The library exposes a simple persistence API.
             </td>
         </tr>
         <tr>
+            <td><div>Misc</div></td>
             <td>exists?, isSaved?, isDirty?, dataStore commands (create, drop database, etc.)</td>
-            <td></td>
             <td>
                 <pre>
                     <code></code>
