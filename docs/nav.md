@@ -5,6 +5,6 @@
         {"title": "Validations", "link": "validations"},
         {"title": "Query Language", "link": "gql"},
         {"title": "Examples", "link": "examples"},
-        {"title": "Developer", "link": "developer"}
+        {"title": "Contributing", "link": "developer"}
     ]
 </div>
