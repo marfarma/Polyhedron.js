@@ -14,16 +14,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   background-color: rgba(255,255,255,0.90);
 }
 
-html,body{height:100%;}
-
-.container {
-    height:100%;
-}
-
-.main-row{
-    min-height:100%;
-}
-
 /* Page headers */
 .bf-header {
   padding: 30px 30px 0px;
