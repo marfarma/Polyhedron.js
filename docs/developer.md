@@ -8,6 +8,10 @@ Want to help make Polyhedron.js even more awesome?  Great!
  - NPM
  - Browserify
  - Napa
+ - git config settings: 
+   - git config [--global] core.autocrlf false
+   - post-commit
+   - config origin block - push master & gh-pages
 
 ## Documentation
 
