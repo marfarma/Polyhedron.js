@@ -1,12 +1,12 @@
 {
-  "name": "polyhedron-odm",
+  "name": "polyhedron",
   "version": "0.0.0",
   "description": "Object Document Mapper for Angularjs & PouchDB",
   "main": "polyhedron.js",
   "scripts": {
-    "test": "./node_modules/.bin/jshint -c .jshintrc *.js test/*.js && ./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js",
+    "test": "browserify polyhedron.js test/test-mocha.js > test/test.bundle.js",
     "build": "mkdir -p dist && browserify polyhedron.js -o dist/polyhedron.js -s Polyhedron",
-     "watch": "watchify polyhedron.js -o dist/polyhedron.js -s Polyhedron",
+    "watch": "watchify polyhedron.js -o dist/polyhedron.js -s Polyhedron",
     "install": "napa"
   },
   "napa": {
@@ -48,6 +48,8 @@
     "karma-phantomjs-launcher": "~0.1.1",
     "karma": "~0.10.9",
     "karma-browserify": "0.0.6",
-    "watchify": "~0.5.5"
+    "watchify": "~0.5.5",
+    "browserify": "~3.24.13",
+    "browserify-shim": "~3.2.2"
   }
 }

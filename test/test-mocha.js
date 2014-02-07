@@ -1,5 +1,10 @@
-var expect = chai.expect;
-var Polyhedron = require('polyhedron');
+var window = window || undefined;
+var chai = require('chai'),
+   expect = chai.expect,
+   Polyhedron;
+
+var Polyhedron = require('../polyhedron.js');
+console.log(Polyhedron);
 
 // var db = Polyhedron.datastore('mongodb://localhost:27017/kongo');
 // var Users = db.doctype('Users');
@@ -14,11 +19,14 @@ var Polyhedron = require('polyhedron');
 // mattCount = yield User.count({name: 'Matthew'});
 // mattCount == 1; // true
 
+//exports.mochaTest = {
 
-describe("Mocha Setup", function() {
-  describe("browser support", function() {
-    it("library should load", function() {
-      expect(Polyhedron).to.be.defined;
+  describe("Mocha Setup", function() {
+    describe("browser support", function() {
+      it("library should load", function() {
+        expect(Polyhedron).to.be.defined;
+      });
     });
   });
-});
+
+//}
