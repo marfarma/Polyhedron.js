@@ -12,7 +12,7 @@ The library exposes a simple persistence API.
                 Description
             </th>
             <th>
-                Example
+                Code Example
             </th>
         </tr>
     </thead>
