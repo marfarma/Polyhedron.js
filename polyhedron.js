@@ -77,7 +77,7 @@ Datastore.prototype.register = function (type, func) {
   return this.models[type];
 };
 
-Datastore.prototype.datastores = function () {
+Datastore.prototype.registered = function () {
   return Object.keys(this.models);
 };
 

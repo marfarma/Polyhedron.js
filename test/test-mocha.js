@@ -55,8 +55,7 @@ describe("Library Interface:", function () {
     });
     
     it("create database should return a promise", function () {
-      var db;
-      db = new Polyhedron.Datastore(PouchDB, 'testDb');
+      var db = new Polyhedron.Datastore(PouchDB, 'testDb');
       var throwaway = db.should.be.fullfilled;
     });
     
@@ -128,7 +127,7 @@ describe("Library Interface:", function () {
     it('should return list of registered prototypes', function () { 
       var Foos1 = db.register('Foos', helper.FooModel);
       var Foos2 = db.register('Bars', helper.FooModel);
-      var list = db.datastores();
+      var list = db.registered();
       list.should.have.members(['Foos', 'Bars']);
     });
     
@@ -136,7 +135,7 @@ describe("Library Interface:", function () {
       var Foos1 = db.register('Foos', helper.FooModel);
       var Foos2 = db.register('Bars', helper.FooModel);
       db.deregister('Bars');
-      var list = db.datastores();
+      var list = db.registered();
       list.should.have.members(['Foos']);
     });
     // it('', function () { });    

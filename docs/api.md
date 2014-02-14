@@ -29,12 +29,48 @@ The library exposes a simple persistence API.
         <tr>
             <td>
                 <div>
+                    Delete Polyhedron Data Store
+                </div>
+            </td>
+            <td>
+                <pre>
+<code>db.destroy();</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
                     Register Type with Polyhedron
                 </div>
             </td>
             <td>
                 <pre>
 <code>var Users = db.register('Users', UserModel);</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    Deregister Type with Polyhedron
+                </div>
+            </td>
+            <td>
+                <pre>
+<code>var Users = db.deregister('Users');</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    List Registered Types
+                </div>
+            </td>
+            <td>
+                <pre>
+<code>var Users = db.registered();</code>
                 </pre>
             </td>
         </tr>
