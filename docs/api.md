@@ -11,9 +11,6 @@ The library exposes a simple persistence API.
             <th>
                 Code Example
             </th>
-            <th>
-                Description
-            </th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +25,6 @@ The library exposes a simple persistence API.
 <code>var db = new Polyhedron.Datastore(PouchDB, 'testDb');</code>
                 </pre>
             </td>
-            <td></td>
         </tr>
         <tr>
             <td>
@@ -41,7 +37,6 @@ The library exposes a simple persistence API.
 <code>var Users = db.register('Users', UserModel);</code>
                 </pre>
             </td>
-            <td></td>
         </tr>
         <tr>
             <td>
@@ -54,7 +49,6 @@ The library exposes a simple persistence API.
 <code>Users.new().then(errFn, successFn)</code>
                 </pre>
             </td>
-            <td></td>
         </tr>
         <tr>
             <td>
@@ -67,7 +61,6 @@ The library exposes a simple persistence API.
 <code>Users.create().then(errFn, successFn)</code>
                 </pre>
             </td>
-            <td></td>
         </tr>
         <tr>
             <td>
@@ -80,7 +73,6 @@ The library exposes a simple persistence API.
 <code>Users.save().then(errFn, successFn)</code>
                 </pre>
             </td>
-            <td></td>
         </tr>
         <tr>
             <td><div>Delete given object from the data store.</div></td>
@@ -89,7 +81,6 @@ The library exposes a simple persistence API.
 <code>Users.find</code>
                 </pre>
             </td>
-            <td></td>
         </tr>
         <tr>
             <td><div>Delete objects matching criteria</div></td>
@@ -98,7 +89,6 @@ The library exposes a simple persistence API.
 <code>Users.findWhere</code>
                 </pre>
             </td>
-            <td></td>
         </tr>
         <tr>
             <td><div>Delete matching objects from the data store.</div></td>
@@ -107,7 +97,6 @@ The library exposes a simple persistence API.
 <code>Users.deleteWhere</code>
                 </pre>
             </td>
-            <td></td>
         </tr>
         <tr>
             <td>Delete</td>
@@ -115,8 +104,8 @@ The library exposes a simple persistence API.
                 <pre>
 <code>Users.delete</code>
                 </pre>
+                <p>Delete given object from the data store.</p>
             </td>
-            <td>Delete given object from the data store.</td>
         </tr>
         <tr>
             <td><div>Misc</div></td>
@@ -124,8 +113,8 @@ The library exposes a simple persistence API.
                 <pre>
 <code></code>
                 </pre>
+                <p>exists?, isSaved?, isDirty?, dataStore commands (create, drop database, etc.)</p>
             </td>
-            <td>exists?, isSaved?, isDirty?, dataStore commands (create, drop database, etc.)</td>
         </tr>
     </tbody>
 </table>
