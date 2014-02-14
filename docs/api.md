@@ -9,10 +9,10 @@ The library exposes a simple persistence API.
                 Operation
             </th>
             <th>
-                Description
+                Code Example
             </th>
             <th>
-                Code Example
+                Description
             </th>
         </tr>
     </thead>
@@ -23,12 +23,12 @@ The library exposes a simple persistence API.
                     Create Polyhedron Data Store
                 </div>
             </td>
-            <td></td>
             <td>
                 <pre>
 <code>var db = new Polyhedron.Datastore(PouchDB, 'testDb');</code>
                 </pre>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td>
@@ -36,12 +36,12 @@ The library exposes a simple persistence API.
                     Register Type with Polyhedron
                 </div>
             </td>
-            <td></td>
             <td>
                 <pre>
 <code>var Users = db.register('Users', UserModel);</code>
                 </pre>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td>
@@ -49,12 +49,12 @@ The library exposes a simple persistence API.
                     Create new unsaved object
                 </div>
             </td>
-            <td></td>
             <td>
                 <pre>
 <code>Users.new().then(errFn, successFn)</code>
                 </pre>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td>
@@ -62,12 +62,12 @@ The library exposes a simple persistence API.
                     Create new saved object.
                 </div>
             </td>
-            <td></td>
             <td>
                 <pre>
 <code>Users.create().then(errFn, successFn)</code>
                 </pre>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td>
@@ -75,57 +75,57 @@ The library exposes a simple persistence API.
                     Update or Save object to data store
                 </div>
             </td>
-            <td></td>
             <td>
                 <pre>
 <code>Users.save().then(errFn, successFn)</code>
                 </pre>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td><div>Delete given object from the data store.</div></td>
-            <td></td>
             <td>
                 <pre>
 <code>Users.find</code>
                 </pre>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td><div>Delete objects matching criteria</div></td>
-            <td></td>
             <td>
                 <pre>
 <code>Users.findWhere</code>
                 </pre>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td><div>Delete matching objects from the data store.</div></td>
-            <td></td>
             <td>
                 <pre>
 <code>Users.deleteWhere</code>
                 </pre>
             </td>
+            <td></td>
         </tr>
         <tr>
             <td>Delete</td>
-            <td>Delete given object from the data store.</td>
             <td>
                 <pre>
 <code>Users.delete</code>
                 </pre>
             </td>
+            <td>Delete given object from the data store.</td>
         </tr>
         <tr>
             <td><div>Misc</div></td>
-            <td>exists?, isSaved?, isDirty?, dataStore commands (create, drop database, etc.)</td>
             <td>
                 <pre>
 <code></code>
                 </pre>
             </td>
+            <td>exists?, isSaved?, isDirty?, dataStore commands (create, drop database, etc.)</td>
         </tr>
     </tbody>
 </table>
