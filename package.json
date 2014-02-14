@@ -4,15 +4,16 @@
   "description": "Object Document Mapper for Angularjs & PouchDB",
   "main": "polyhedron.js",
   "scripts": {
-    "test": "browserify polyhedron.js test/test-mocha.js > test/test.bundle.js",
+    "test": "jshint -c .jshintrc polyhedron.js test/test-mocha.js && make test",
     "build": "mkdir -p dist && browserify polyhedron.js -o dist/polyhedron.js -s Polyhedron",
-    "watch": "watchify polyhedron.js -o dist/polyhedron.js -s Polyhedron",
     "install": "napa"
   },
   "napa": {
     "angular": "angular/bower-angular",
     "angular-route": "angular/bower-angular-route",
-    "pouchdb-gql": "pouchdb/GQL"
+    "angular-mocks": "angular/bower-angular-mocks",
+    "pouchdb-gql": "pouchdb/GQL",
+    "indexed-db-shim": "axemclion/IndexedDBShim"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "napa": "~0.3.0",
     "beefy": "~0.7.1",
+    "q": "~0.9.7",
     "chai": "~1.8.1",
     "mocha": "~1.16.2",
     "jshint": "~2.3.0",
@@ -50,6 +52,12 @@
     "karma-browserify": "0.0.6",
     "watchify": "~0.5.5",
     "browserify": "~3.24.13",
-    "browserify-shim": "~3.2.2"
+    "browserify-shim": "~3.2.2",
+    "mocha-phantomjs": "~3.3.1",
+    "chai-as-promised": "~4.1.0",
+    "mocha-as-promised": "~2.0.0",
+    "when": "~2.8.0",
+    "ua-parser-js": "~0.6.2",
+    "platform": "~1.0.0"
   }
 }

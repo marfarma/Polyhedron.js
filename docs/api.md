@@ -26,7 +26,7 @@ The library exposes a simple persistence API.
             <td></td>
             <td>
                 <pre>
-<code>var dataStore = new polyhedron({dbname: 'test'});</code>
+<code>var db = new Polyhedron.Datastore(PouchDB, 'testDb');</code>
                 </pre>
             </td>
         </tr>
@@ -39,7 +39,7 @@ The library exposes a simple persistence API.
             <td></td>
             <td>
                 <pre>
-<code>var item = dataStore.type('item', fn)</code>
+<code>var Users = db.register('Users', UserModel);</code>
                 </pre>
             </td>
         </tr>
@@ -52,7 +52,7 @@ The library exposes a simple persistence API.
             <td></td>
             <td>
                 <pre>
-<code>item.new().then(errFn, successFn)</code>
+<code>Users.new().then(errFn, successFn)</code>
                 </pre>
             </td>
         </tr>
@@ -65,7 +65,7 @@ The library exposes a simple persistence API.
             <td></td>
             <td>
                 <pre>
-<code>item.create().then(errFn, successFn)</code>
+<code>Users.create().then(errFn, successFn)</code>
                 </pre>
             </td>
         </tr>
@@ -78,7 +78,7 @@ The library exposes a simple persistence API.
             <td></td>
             <td>
                 <pre>
-<code>item.save().then(errFn, successFn)</code>
+<code>Users.save().then(errFn, successFn)</code>
                 </pre>
             </td>
         </tr>
@@ -87,7 +87,7 @@ The library exposes a simple persistence API.
             <td></td>
             <td>
                 <pre>
-<code>item.find</code>
+<code>Users.find</code>
                 </pre>
             </td>
         </tr>
@@ -96,7 +96,7 @@ The library exposes a simple persistence API.
             <td></td>
             <td>
                 <pre>
-<code>item.findWhere</code>
+<code>Users.findWhere</code>
                 </pre>
             </td>
         </tr>
@@ -105,7 +105,7 @@ The library exposes a simple persistence API.
             <td></td>
             <td>
                 <pre>
-<code>item.deleteWhere</code>
+<code>Users.deleteWhere</code>
                 </pre>
             </td>
         </tr>
@@ -114,7 +114,7 @@ The library exposes a simple persistence API.
             <td>Delete given object from the data store.</td>
             <td>
                 <pre>
-<code>item.delete</code>
+<code>Users.delete</code>
                 </pre>
             </td>
         </tr>

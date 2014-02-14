@@ -17,8 +17,11 @@
   "maxlen": 100,
   "predef": [
     "process",
+    "angular",
+    "promiseFor",
     "global",
     "require",
+    "inject",
     "console",
     "describe",
     "beforeEach",

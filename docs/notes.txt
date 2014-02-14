@@ -95,4 +95,24 @@
        obj[ items[i] ] = true;
      return obj;
    } 
+
+
+function use$q($q) {
+
+    if (breeze.config.setQ) {
+        breeze.config.setQ($q);
+        $q.resolve = $q.fcall = $q.when;  // add methods Breeze wants that $q lacks          
+        extendBreezeWith_to$q(); // legacy
+    } else {
+        throw new Error(
+            'Cannot use this version of use$q with breeze.version=' + breeze.version);
+    }
+}
+
+function use$q($q) {
+  Polyhedron.config.setQ($q);
+}
+
+
+
     
