@@ -1,14 +1,28 @@
 "use strict";
 
 var chai = require('chai'),
+   Q = global.Promise = require("q"),
+   //Q = Promise = global.Promise || require('bluebird'),
    PouchDB = require('pouchdb'),
    expect = chai.expect,
    should = chai.should(),
    chaiAsPromised = require('chai-as-promised'),
    Polyhedron = require('../polyhedron.js'),
    helper = require('./helper.js'),
+   exec = require('child_process').exec,
+   testUtils = require('./utils.js');
    //platform    = require('platform'),
-   Q = require("q");
+
+// function cleanup() {
+//  // Remove test databases and test allDbs database.
+//   exec('rm -r ' + testsDir);
+// }
+// 
+// exec('mkdir -p ' + testsDir, function () {
+//   process.on('SIGINT', cleanup);
+//   process.on('exit', cleanup);
+// });
+
 
 require('mocha-as-promised')();
 chai.use(chaiAsPromised);
@@ -44,14 +58,17 @@ describe("Library Interface:", function () {
   
   beforeEach(function () {
      // TODO: try with the $q library
+    testUtils.cleanupTestDatabases();
     Polyhedron.config.setQ(Q);
   });
   
   describe("basic configuration:", function () {
     
-    it("should load", function () {
-      var throwaway = expect(Polyhedron).to.be.defined;
-      expect(typeof Polyhedron).to.equal('object');
+    it("should load", function () {      
+      Q.all([
+        Polyhedron.should.be.defined,
+        expect(typeof Polyhedron).to.equal('object')
+      ]);
     });
     
     it("create database should return a promise", function () {
@@ -75,9 +92,47 @@ describe("Library Interface:", function () {
         ]);
       });
     });   
-    it('should return existing database when called repeatedly');
-    it('should delete a database');
-    it('should return a list of database on server');
+    it('should return existing database when called repeatedly', function () { 
+      var db, db2;
+      db = new Polyhedron.Datastore(PouchDB, 'testDb');
+      db.then(function (data) {
+        db2 = new Polyhedron.Datastore(PouchDB, 'testDb');
+        Q.all([
+          db2.should.eventually.have.property('server').that.equals(data.server),
+          db2.should.eventually.have.property('db').that.equals(data.db)
+        ]);
+      });
+    });
+    it('should return a list of database on server', function () { 
+      var db, db2;
+      db = new Polyhedron.Datastore(PouchDB, 'testDb');
+      db2 = new Polyhedron.Datastore(PouchDB, 'testDb2');
+      Q.all([
+        db,
+        db2
+      ]).then(function (data) {
+        var list = Polyhedron.Datastores(PouchDB);
+        list.should.have.members(['testDb', 'testDb2']);
+      });
+    });
+    // TODO: fix delete database support
+    it.skip('should delete a database', function () { 
+      var db = new Polyhedron.Datastore(PouchDB, 'testDb');
+      db.then(
+        function (data) {
+          var promise = data.destroy().then(
+            function (info) {
+              if (typeof info !== 'undefined') { console.log(info); }
+              var list = Polyhedron.Datastores(PouchDB);
+              console.log(list);
+              //list.should.have.members(['testDb', 'testDb2']);
+            }, function (err) {
+              console.log(err);              
+            });
+          var throwaway = promise.should.be.fullfilled;
+          
+        });
+    });
   });
   
   describe("mapper tests:", function () {
@@ -96,11 +151,7 @@ describe("Library Interface:", function () {
     });
 
     after(function (done) {
-      // workaround phantomjs 'Error: SECURITY_ERR: DOM Exception 18' for WebSql destroy
-      if ((window.navigator.userAgent.indexOf('PhantomJS') === -1) && 
-          (typeof db.destroy === 'function')) {
-        db.destroy();
-      }
+      testUtils.cleanupTestDatabases();
       done();
     }); 
            
@@ -143,17 +194,39 @@ describe("Library Interface:", function () {
   });
   
   describe("model save tests:", function () {
+    var db;
       
+    before(function (done) {
+      Polyhedron.config.setQ(Q);
+      db = new Polyhedron.Datastore(PouchDB, 'testDb');
+      db.then(function (data) {
+        db = data;
+        done();
+      },
+      function (err) {
+        done();
+      });  
+    });
+
+    after(function (done) {
+      testUtils.cleanupTestDatabases();
+      done();
+    }); 
+           
+    // var Users = db.doctype('Users');
+    // 
+    // newUser = Users.create({name: 'Ryan'});
+    // newUser._id // Some id set by /pouchDB/mongo
+    it('should create a new unsaved instance', function () { 
+      var Foos = db.register('Foos', helper.FooModel);
+      var foo = Foos.new();
+    }); 
+    
       // define test models in helper  
       // beforeEach(){} 
       // var Users = db.doctype('Users',helper.FooModel);
       // 
     it('should create a new saved instance'); 
-      // var Users = db.doctype('Users');
-      // 
-      // newUser = Users.create({name: 'Ryan'});
-      // newUser._id // Some id set by /pouchDB/mongo
-    it('should create a new unsaved instance'); 
     it('should add a non-enumerable property with internal tracking values');
       // var Users = db.doctype('Users');
       // 

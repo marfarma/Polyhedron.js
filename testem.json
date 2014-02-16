@@ -8,5 +8,5 @@
     "test_page": "test/runner-cli.html",
     "before_tests": "browserify test/test-mocha.js > test/test.bundle.js",
     "on_exit": "rm test/test.bundle.js",
-    "launch_in_dev": [ "chrome", "phantomjs" ]
+    "launch_in_dev": [ "chrome", "phantomjs","Firefox" ]
 }

@@ -6,9 +6,17 @@ var Polyhedron = exports;
 Polyhedron.config = {};
 Polyhedron.config.Q = function () {};
 
+
+// TODO: polyfill bluebird so it will work
 Polyhedron.config.setQ = function (q) { 
   Polyhedron.config.Q = q || {}; 
 };
+
+Polyhedron.servers = {};
+
+function Datastores(server) {
+  return Object.keys(Polyhedron.servers[server]);
+}
 
 // TODO: extract into server interface
 function Datastore(server, database) {
@@ -25,12 +33,15 @@ function Datastore(server, database) {
       deferred.reject(new TypeError('Server must be an object.'));
     }
     this.server = server;
+    Polyhedron.servers[server] = Polyhedron.servers[server] || {};
 
     if (typeof database !== 'string') {
       deferred.reject(new TypeError('Database must be a string.'));
     }
     this.database = database;
-    this.db = this.server('dbname');
+    Polyhedron.servers[server][database] = 1;
+    
+    this.db = this.server(database);
     deferred.resolve(this);
     
     return deferred.promise;
@@ -52,10 +63,12 @@ Datastore.prototype.destroy = function () {
         deferred.reject(new Error(err));
       }
     } else {
+      delete Polyhedron.servers[this.server][this.database];
       deferred.resolve(info);
     }
-    return deferred.promise;
   });
+  
+  return deferred.promise;
 };
 
 Datastore.prototype.register = function (type, func) {
@@ -95,18 +108,20 @@ function Mapper(args) {
   this.datastore = args.datastore;
 }
 
-Mapper.prototype._new = function () {
-  return new this.Proto();
+Mapper.prototype.new = function () {
+  var item = new this.Proto();
+  return Polyhedron.config.Q.when(item);
 };
 
-
+// mapper properties use: __polyhedron__
+// properties of interest: server, database, identity map id
 
 Polyhedron.Datastore = Datastore;
+Polyhedron.Datastores = Datastores;
 
 
 
 //module.exports = Polyhedron;
-
 
 // var Polyhedron.prototype.PolyhedronError = (function() {
 //   function F(){}
