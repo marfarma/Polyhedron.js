@@ -70,7 +70,7 @@ The library exposes a simple persistence API.
             </td>
             <td>
                 <pre>
-<code>var Users = db.registered();</code>
+<code>var list = db.registered();</code>
                 </pre>
             </td>
         </tr>
@@ -144,7 +144,6 @@ The library exposes a simple persistence API.
 <code>Users.find({name:"Jane Doe"})</code>
                 </pre>
                 <p>Returns a promise that resolves to an array containing all saved items of the registered type with properties matching the given object.</p>
-                <pre>
                 <pre>
 <code>Users.find([{name:"Jane Doe"},{name:"John Smith"}])</code>
                 </pre>
