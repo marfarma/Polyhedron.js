@@ -55,7 +55,7 @@ testUtils.cleanupTestDatabases = function(done) {
   function finished() {
     testUtils.cleanupAllDbs(done);
   }
-  
+
 
   function dbDeleted() {
     if (++deleted === dbCount) {
@@ -63,15 +63,34 @@ testUtils.cleanupTestDatabases = function(done) {
     }
   }
 
-  PouchDB.allDbs(function(err, dbs) {
+  // PouchDB.allDbs(function(err, dbs) {
+  //   if (!dbs.length) {
+  //     finished();
+  //   }
+  //
+  //   dbCount = dbs.length;
+  //   dbs.forEach(function(db) {
+  //     PouchDB.destroy(db, dbDeleted);
+  //   });
+  // });
+
+  PouchDB.allDbs().then(function (dbs) {
+    // dbs is an array of strings, e.g. ['mydb1', 'mydb2']
     if (!dbs.length) {
       finished();
     }
-    dbCount = dbs.length;
+    // dbCount = dbs.length;
     dbs.forEach(function(db) {
       PouchDB.destroy(db, dbDeleted);
     });
+
+  }).catch(function (err) {
+    console.log(dbs, err);
+    // handle err
   });
+
+
+
 }
 
 testUtils.uuid = function() {

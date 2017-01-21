@@ -4,3 +4,4 @@ coverage
 *~
 testdb
 testdb.uuid
+test/test.bundle.js
