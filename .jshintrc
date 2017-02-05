@@ -13,6 +13,7 @@
   "globalstrict": true,
   "globals": { "PouchDB": true},
   "white": true,
+  "maxlen": 200,
   "indent": 2,
   "maxlen": 100,
   "predef": [
@@ -32,4 +33,3 @@
     "emit"
   ]
 }
-

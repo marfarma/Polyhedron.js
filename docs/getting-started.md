@@ -10,7 +10,7 @@
 
 <p>The configured browers, chrome, firefox and phantomjs should run the jasmine test suite.  See the Testem docs for details on using the commandline UI to navigate the test results and to see the phantomjs test output.  https://github.com/testem/testem
 </p><p>
-Testing configuration files are in the test directory while the actual test suite is in the jasmine-tests directory.  The library code is in the file polyhedron.js in the root directory.
+Testing configuration files are in the test directory while the actual test suite is in the test directory.  The library code is in the file polyhedron.js in the root directory.
 </p>
 
 

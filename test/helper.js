@@ -7,7 +7,7 @@ var FooModel = function(){
         return "FooModel";
     };
     this.apm_validations = {
-        name: {presence: true, simple: true, unique: {}} 
+        name: {presence: true, simple: true, unique: {}}
     };
 };
 
@@ -18,7 +18,7 @@ var BarModel = function(){
         return "BarModel";
     };
     this.apm_validations = {
-        name: {presence: true, simple: true, unique: {}} 
+        name: {presence: true, simple: true, unique: {}}
     };
 };
 
@@ -26,11 +26,11 @@ var ComplexModel = function() {
       this.name = '';
       this.apm_type = 'ComplexModel';
       this.apm_validations = {
-          name: {presence: true, simple: true, unique: {}} 
+          name: {presence: true, simple: true, unique: {}}
       };
       this.fields = [];
       this.objProp = {prop1:"first",prop2:{location:"next"},prop3:["third1","third2","third3"]};
-  
+
       this.deleteField = function(id) {
           this.fields.splice(id, 1);
           var newId = 1;
@@ -44,7 +44,7 @@ var ComplexModel = function() {
         var id = this.fields.length + 1;
         this.fields.push({id:id, name:value});
       };
-    
+
       this.addField('one');
       this.addField('two');
       this.addField('three');

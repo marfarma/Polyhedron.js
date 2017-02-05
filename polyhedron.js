@@ -1,90 +1,63 @@
 "use strict";
 
-var Polyhedron = exports;
+var util = require('./util.js');
+var PouchDB = require('pouchdb');
+// var Promise;
+var Promise = require('bluebird');
+// Configure
+Promise.config({
+    longStackTraces: true,
+    warnings: true // note, run node with --trace-warnings to see full stack traces for warnings
+});
 
+require('pouchdb-all-dbs')(PouchDB);
+// Generate a v4 UUID (random)
+var uuidV4 = require('uuid/v4');
+
+var Polyhedron = exports;
 
 Polyhedron.config = {};
 Polyhedron.config.Q = function () {};
 
-
 // TODO: polyfill bluebird so it will work
-Polyhedron.config.setQ = function (q) { 
-  Polyhedron.config.Q = q || {}; 
+Polyhedron.config.setQ = function (q) {
+  Polyhedron.config.Q = q || {};
+  // Promise = Polyhedron.config.Q;
 };
 
-Polyhedron.servers = {};
-
-function Datastores(server) {
-  return Object.keys(Polyhedron.servers[server]);
-}
-
-// TODO: extract into server interface
-function Datastore(server, database) {
-  
-  var db,
-    deferred;
-    
+function Datastore(database, options) {
   this.models = {};
-    
-  if (Polyhedron.config.Q !== 'undefined') {  
-    deferred = Polyhedron.config.Q.defer(); 
-  
-    if (typeof server !== 'object' && typeof server !== 'function') {
-      deferred.reject(new TypeError('Server must be an object.'));
-    }
-    this.server = server;
-    Polyhedron.servers[server] = Polyhedron.servers[server] || {};
+  this.options = options || {};
 
-    if (typeof database !== 'string') {
-      deferred.reject(new TypeError('Database must be a string.'));
-    }
-    this.database = database;
-    Polyhedron.servers[server][database] = 1;
-    
-    this.db = this.server(database);
-    deferred.resolve(this);
-    
-    return deferred.promise;
-  } else {
-    throw new TypeError('Promise library not configured.');
+  if (typeof database !== 'string') {
+    throw new TypeError('Database must be a string.');
   }
-  
+  this.database = database;
+  this.db = new PouchDB(database, options);
+  return this;
 }
 
-// TODO: extract into server interface
 Datastore.prototype.destroy = function () {
-  var deferred = Polyhedron.config.Q.defer(); 
-  
-  this.server.destroy(this.database, function (err, info) {
-    if (err) {
-      if (err instanceof Error) {
-        deferred.reject(err);
-      } else {
-        deferred.reject(new Error(err));
-      }
-    } else {
-      delete Polyhedron.servers[this.server][this.database];
-      deferred.resolve(info);
-    }
-  });
-  
-  return deferred.promise;
+  return this.db.destroy().then(
+    function(){
+      return undefined;
+    }.bind(this)
+  );
 };
 
 Datastore.prototype.register = function (type, func) {
-  if (typeof this.models[type] !== 'undefined') { 
+  if (typeof this.models[type] !== 'undefined') {
     if (this.models[type].Proto !== func) {
       throw new TypeError('Previously registered models cannot be modified.');
-    } 
+    }
   } else {
     if (typeof func !== 'function') {
       throw new TypeError('Parameter "func" is not a function.');
     } else {
       this.models[type] = new Mapper({"proto": func,
                           "name": type,
-                          "database": this.database,
-                          "server": this.server,
-                          "datastore": this});
+                          "datastore": this.db});
+      // console.log('register type: ', this.models[type]);
     }
   }
   return this.models[type];
@@ -95,68 +68,59 @@ Datastore.prototype.registered = function () {
 };
 
 Datastore.prototype.deregister = function (type) {
-  if (typeof this.models[type] !== 'undefined') { 
+  if (typeof this.models[type] !== 'undefined') {
     delete this.models[type];
-  }  
+  }
 };
 
 function Mapper(args) {
   this.Proto = args.proto;
   this.name = args.name;
-  this.database = args.database;
-  this.server = args.server;
   this.datastore = args.datastore;
+
+  var toSerializable = function(obj) {
+    // copy data to savable object
+    var serializableObj = {};
+    for (var field in obj) {
+        if (obj.hasOwnProperty(field)) {
+            if (typeof obj[field] !== 'function') {
+                serializableObj[field] = util.copy(obj[field]);
+            }
+        }
+    }
+    return serializableObj;
+  };
+
+  return this;
 }
 
-Mapper.prototype.new = function () {
-  var item = new this.Proto();
-  return Polyhedron.config.Q.when(item);
+Mapper.prototype.save = function (item) {
+  return Promise.resolve(item);
 };
 
-// mapper properties use: __polyhedron__
-// properties of interest: server, database, identity map id
+Mapper.prototype.new = Promise.method(function () {
+  return new this.Proto();
+});
+
+Mapper.prototype.create = function () {
+  var newObj;
+
+  return this.new()
+  .then(function(item){
+    item._id = uuidV4(); // -> '110ec58a-a0f2-4ac4-8393-c866d813b8d1'
+    newObj = item;
+    var safeObj = util.fromJson(util.toJson(item));
+    return this.datastore.put(safeObj);
+  }.bind(this))
+  .then(function(res){
+    newObj._rev = res.rev;
+    newObj._id = res.id;
+    return Promise.resolve(newObj);
+  })
+  .catch(function(err){
+    return Promise.reject(new Error(err));
+  });
+
+};
 
 Polyhedron.Datastore = Datastore;
-Polyhedron.Datastores = Datastores;
-
-
-
-//module.exports = Polyhedron;
-
-// var Polyhedron.prototype.PolyhedronError = (function() {
-//   function F(){}
-//   function CustomError() {
-//     var _this = (this===window) ? new F() : this, // correct if not called with "new" 
-//       tmp = Error.prototype.constructor.apply(_this,arguments)
-//     ;
-//     for (var i in tmp) {
-//       if (tmp.hasOwnProperty(i)) _this[i] = tmp[i];
-//     }
-//     return _this;
-//   }
-//   function SubClass(){}
-//   SubClass.prototype = Error.prototype;
-//   F.prototype = CustomError.prototype = new SubClass();
-//   CustomError.prototype.constructor = CustomError;
-//  
-//   CustomError.prototype.Status = function(status){
-//     if (status != null) this.status = status;
-//     return this.status;
-//   }
-//     
-//   CustomError.prototype.Code = function(code){
-//     if (code != null) this.code = code;
-//     return this.code;
-//   }
-//     
-//   return CustomError;
-// })();
-// 
-// Polyhedron.prototype.Errors = {
-//   NOT_FOUND: function () {
-//       var err = new PolyhedronError('Item was not found.');
-//       err.Status(404);
-//       err.Code('not_found');
-//       return err;
-//     }();
-//   };

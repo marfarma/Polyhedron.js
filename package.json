@@ -4,7 +4,7 @@
   "description": "Object Document Mapper for Angularjs & PouchDB",
   "main": "polyhedron.js",
   "scripts": {
-    "test": "jshint -c .jshintrc polyhedron.js test/test-mocha.js && make test",
+    "test": "jshint -c .jshintrc polyhedron.js util.js test/test-mocha.js && make test",
     "build": "mkdir -p dist && browserify polyhedron.js -o dist/polyhedron.js -s Polyhedron"
   },
   "repository": {
@@ -50,8 +50,10 @@
     "when": "~3.7.7"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
     "indexeddbshim": "^2.2.1",
     "pouchdb": "^6.1.1",
-    "pouchdb-all-dbs": "^1.0.2"
+    "pouchdb-all-dbs": "^1.0.2",
+    "uuid": "^3.0.1"
   }
 }

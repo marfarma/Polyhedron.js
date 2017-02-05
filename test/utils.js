@@ -2,7 +2,7 @@
 
 var testUtils = {};
 
-testUtils.PERSIST_DATABASES = false;
+testUtils.PERSIST_DATABASES = true;
 
 testUtils.couchHost = function() {
   if (typeof module !== 'undefined' && module.exports) {
