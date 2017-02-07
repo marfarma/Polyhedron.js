@@ -1,7 +1,6 @@
 "use strict";
 
 var chai = require('chai'),
-  //  Q = global.Promise = require("q"),
    Q = global.Promise || require('bluebird'),
    Promise = Q,
    expect = chai.expect,
@@ -12,20 +11,6 @@ var chai = require('chai'),
    exec = require('child_process').exec,
    testUtils = require('./utils.js');
 
-   //platform    = require('platform'),
-
-// function cleanup() {
-//  // Remove test databases and test allDbs database.
-//   exec('rm -r ' + testsDir);
-// }
-//
-// exec('mkdir -p ' + testsDir, function () {
-//   process.on('SIGINT', cleanup);
-//   process.on('exit', cleanup);
-// });
-
-
-// require('mocha-as-promised')();
 chai.use(chaiAsPromised);
 
 if (Q) {
@@ -192,6 +177,7 @@ describe("Library Interface:", function () {
     it('saved should become false if object is "dirty"');
     it('should report saved=false status if not saved');
   });
+
 
   // users = Users.find({}, {sort: ['createdAt', -1], limit: 10});
   // mattCount = User.count({name: 'Matthew'});

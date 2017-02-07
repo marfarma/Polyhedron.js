@@ -94,28 +94,54 @@ function Mapper(args) {
   return this;
 }
 
+// get or update concern
+// check for pre-existing (due to sync) version conflict and
+// determine if any action needs to be
+// taken - probably implement a conflict resolution hook
+
+
+
 Mapper.prototype.save = function (item) {
-  return Promise.resolve(item);
+  // check for validations -- proceed if they return ok
+  // find by _id - reject if exists
+
+  // check for pre-save hooks -- proceed if they
+  //     return ok (protocol to be defined)
+  // save the item
+
+  var newObj;
+  if (!item.hasOwnProperty('_id') ||
+       item._id !== undefined || item._id.length === 0) {
+    item._id = uuidV4(); // -> '110ec58a-a0f2-4ac4-8393-c866d813b8d1'
+  }
+  newObj = item;
+  var safeObj = util.fromJson(util.toJson(item));
+  return this.datastore.put(safeObj)
+  .then(function(res){
+    newObj._rev = res.rev;
+    // check the return status - make sure it's ok
+    // check for post-save hooks -- call if any
+    return Promise.resolve(newObj);
+  })
+  .catch(function(err){
+    return Promise.reject(new Error(err));
+  });
+  // check for post-save hooks -- and call if any
 };
 
 Mapper.prototype.new = Promise.method(function () {
-  return new this.Proto();
+  // check for pre-create hooks and call them if any
+  return new this.Proto(); // switch to object create
+  // check for post-create hooks and call them if any
 });
 
 Mapper.prototype.create = function () {
-  var newObj;
-
   return this.new()
   .then(function(item){
-    item._id = uuidV4(); // -> '110ec58a-a0f2-4ac4-8393-c866d813b8d1'
-    newObj = item;
-    var safeObj = util.fromJson(util.toJson(item));
-    return this.datastore.put(safeObj);
+    return this.save(item);
   }.bind(this))
-  .then(function(res){
-    newObj._rev = res.rev;
-    newObj._id = res.id;
-    return Promise.resolve(newObj);
+  .then(function(item){
+    return Promise.resolve(item);
   })
   .catch(function(err){
     return Promise.reject(new Error(err));

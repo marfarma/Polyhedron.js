@@ -5,7 +5,7 @@
   "main": "polyhedron.js",
   "scripts": {
     "test": "jshint -c .jshintrc polyhedron.js util.js test/test-mocha.js && make test",
-    "build": "mkdir -p dist && browserify polyhedron.js -o dist/polyhedron.js -s Polyhedron"
+    "build": "mkdir -p dist && browserify --debug polyhedron.js -o dist/polyhedron.js -s Polyhedron"
   },
   "repository": {
     "type": "git",
