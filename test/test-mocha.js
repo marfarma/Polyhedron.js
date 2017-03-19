@@ -158,20 +158,22 @@ describe("Library Interface:", function () {
       return foo.should.eventually.have.property("_rev");
     });
 
-    it('should add a non-enumerable property with internal tracking values');
-    it('should retain behavior after object is saved and restored');
-    it('should restore model data recursively including array and object properties');
-    it('should return an error on missing or undefined object');
-    it('should return an error if passed object of wrong type');
+    it('should add a non-enumerable property with internal tracking values', function () {
+      return should.fail();
+    });
+    it.skip('should retain behavior after object is saved and restored');
+    it.skip('should restore model data recursively including array and object properties');
+    it.skip('should return an error on missing or undefined object');
+    it.skip('should return an error if passed object of wrong type');
   });
 
-  describe("model primary key tests:", function () {
+  describe.skip("model primary key tests:", function () {
     it('should respect unique primary key declaration');
     it('should not save a new object with a duplicate primary key');
     it('should save an object with a duplicate primary key if model differs');
   });
 
-  describe("util functions:", function () {
+  describe.skip("util functions:", function () {
     it('should have a toJson method that excludes internal properties');
     it('should report saved=true status if saved');
     it('saved should become false if object is "dirty"');

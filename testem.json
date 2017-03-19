@@ -1,12 +1,25 @@
 {
     "framework": "mocha+chai",
-    "serve_files": [ "test/test.bundle.js" ],
+    "serve_files": ["test/test.bundle.js"],
     "src_files": [
         "polyhedron.js",
         "test/test-mocha.js"
     ],
     "test_page": "test/runner-cli.html",
     "before_tests": "browserify test/test-mocha.js --debug > test/test.bundle.js",
+    "launchers": {
+        "electron": {
+            "command": "electron-mocha --reporter TAP --renderer test/test.bundle.js",
+            "protocol": "tap"
+        }
+    },
     "on_exit": "rm test/test.bundle.js",
-    "launch_in_dev": [ "chrome", "Firefox", "phantomjs" ]
+    "launch_in_dev": [
+        "electron",
+        "PhantomJS"
+    ],
+    "launch_in_ci": [
+        "electron"
+    ]
+
 }
